@@ -1,15 +1,20 @@
-import Gallery from './Components/Gallery';
-import Header from './Components/Header';
+import { createBrowserRouter, RouterProvider } from 'react-router';
+import Root from './Components/Root';
 import './Styles/App.css';
+import Home from './Pages/Home';
+
+const router = createBrowserRouter([
+  {
+    element: <Root />,
+    children: [
+      {index: true, element: <Home />},
+    ]
+  },
+]);
 
 function App() {
   return ( 
-    <div className="App flex justify-center" data-testid="app">
-        <main className="w-full max-w-screen-xl mx-6">
-          <Header/>
-          <Gallery />
-        </main>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 

@@ -1,28 +1,28 @@
 import React, { useContext, useState } from 'react'
 import {MdSearch} from 'react-icons/md'
-import { PhotosContext } from '../Hooks/usePhotos';
+// import { PhotosContext } from '../Hooks/usePhotos';
 import AddPhotoModal from './AddPhotoModal'
-// import { usePhotos } from '../Hooks/usePhotos';
+import { assets } from '../Utils/data';
 
 function Header() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const ctx = useContext(PhotosContext);
+  // const ctx = useContext(PhotosContext);
 
   return (
-    <header id="page-header" data-testid="header" className='flex my-6 w-full justify-between' >
+    <header id="page-header" data-testid="header" className='flex py-3 w-full justify-between border-b px-8' >
         <div className="left flex ">
-        <img src="my_unsplash_logo.svg" alt="logo" data-testid="header-logo"/>
-        <div className="searchbar ml-4 border rounded-xl flex items-center" id="searchbar" data-testid="searchbar">
-            <MdSearch className='ml-2 text-gray-400'/>
-            <input type="text" className='block outline-none ml-2' name="searchbox" id="searchbox" data-testid="searchbox" placeholder='Search by name'
-              value={ctx.searchLabel} onChange={(e) => ctx.setSearchLabel(e.target.value)}
-            />
+          <img src={assets.icons.logo} alt="logo" data-testid="header-logo"/>
         </div>
-        </div>
-        <button className='bg-green-500 rounded-xl text-white font-bold' id="addPhoto" data-testid="btn-addPhoto" onClick={()=>{setIsModalOpen(true)}}>Add a photo</button>
-        <AddPhotoModal isOpen={isModalOpen} onClose={()=>{setIsModalOpen(false)}}/>
-    </header>
+
+        <nav className="flex items-center gap-8">
+          <ul className='flex gap-8'>
+            <li className='cursor-pointer font-semibold text-primary transition-all duration-200 bg-fadedLight px-3 py-2 rounded-sm'>Home</li>
+            <li className='cursor-pointer font-semibold hover:text-primary text-fadedSecondary transition-all duration-200 px-3 py-2 rounded-sm'>Collections</li>
+            <li className='cursor-pointer font-semibold hover:text-primary text-fadedSecondary transition-all duration-200 px-3 py-2 rounded-sm'>Sign in</li>
+          </ul>
+        </nav>
+        </header>
   )
 }
 

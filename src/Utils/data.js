@@ -3228,7 +3228,7 @@ export const photos = [
                   "last_name": "Santos",
                   "twitter_username": null,
                   "portfolio_url": "http://marcussantosr.com",
-                  "bio": "Hiperativo, Publicitario e amante da fotometria\r\n Instagram:@marcussantosr",
+                  "bio": "Hiperativo, itario e amante da fotometria\r\n Instagram:@marcussantosr",
                   "location": null,
                   "links": {
                     "self": "https://api.unsplash.com/users/marcussantosr",
@@ -5695,3 +5695,21 @@ export const photos = [
         ]
       }
  ];
+
+ export const assets = {
+  images: {
+    gradientBg: "/resources/gradiend-bg.svg",
+    gradientBg2: "/resources/gradiend-bg@2x.png",
+    hero: "/resources/hero-image.png",
+    heroLeft: "/resources/hero-left.png",
+    heroRight: "/resources/hero-right.png",
+  },
+
+  icons: {
+    downArrow: "/resources/down arrow.svg",
+    logo: "/resources/Logo.svg",
+    plus: "/resources/Plus.svg",
+    remove: "/resources/Remove.svg",
+    search: "/resources/Search.svg",
+  }
+ }
