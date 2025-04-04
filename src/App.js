@@ -4,6 +4,7 @@ import './Styles/App.css';
 import Home from './Pages/Home';
 import SearchResults from './Pages/SearchResults';
 import AppRoot from './Components/AppRoot';
+import Collections from './Pages/Collections';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,8 @@ const router = createBrowserRouter([
   {
     element: <AppRoot />,
     children: [
-      {path: '/search', element: <SearchResults />}
+      {path: '/search', element: <SearchResults />},
+      {path: '/collections', element: <Collections />},
     ]
   }
 ]);

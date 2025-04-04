@@ -2,59 +2,144 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root{
+  --gap-small: 8px;
 }
 
-body{
-    font-size: 14px;
-    font-family: "Noto Sans", sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .page {
-    height: calc(100vh - 62px);
+  height: calc(100vh - 62px);
 }
 
 .my-masonry-grid {
-    display: -webkit-box; /* Not needed if autoprefixing */
-    display: -ms-flexbox; /* Not needed if autoprefixing */
-    display: flex;
-    margin-left: -30px; /* gutter size offset */
-    width: auto;
-    transition: all 0.3s ease-in-out;
-  }
-  .my-masonry-grid_column {
-    transition: all 0.3s ease-in-out;
-    padding-left: 30px; /* gutter size */
-    background-clip: padding-box;
-  }
-  
-  /* Style your items */
-  .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
-    background: grey;
-    margin-bottom: 30px;
-    transition: all 0.3s ease-in-out;
+  display: -webkit-box;
+  /* Not needed if autoprefixing */
+  display: -ms-flexbox;
+  /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px;
+  /* gutter size offset */
+  width: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.my-masonry-grid_column {
+  transition: all 0.3s ease-in-out;
+  padding-left: 30px;
+  /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column>div {
+  /* change div to reference your elements you put in <Masonry> */
+  background: grey;
+  margin-bottom: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.title {
+  background: linear-gradient(to right, #F2C593, #8A3282);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.collectionCoverGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: var(--gap-small) var(--gap-small);
+  grid-template-areas:
+    "img1 img1 img1 img2"
+    "img1 img1 img1 img2"
+    "img1 img1 img1 img3"
+    "img1 img1 img1 img3";
+
+  .img1 {
+    grid-area: img1;
   }
 
-  @media screen and (max-width: 768px) {
-    .my-masonry-grid {
-        display: -webkit-box; /* Not needed if autoprefixing */
-        display: -ms-flexbox; /* Not needed if autoprefixing */
-        display: flex;
-        margin-left: -15px; /* gutter size offset */
-        width: auto;
-      }
-      .my-masonry-grid_column {
-        padding-left: 15px; /* gutter size */
-        background-clip: padding-box;
-      }
-      
-      /* Style your items */
-      .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
-        background: grey;
-        margin-bottom: 15px;
-      }
-    
+  .img2 {
+    grid-area: img2;
   }
+
+  .img3 {
+    grid-area: img3;
+  }
+}
+
+
+.collectionCoverGrid.dualCover {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr; 
+  gap: var(--gap-small) var(--gap-small); 
+  grid-template-areas: 
+    "img1 img1 img2 img2"
+    "img1 img1 img2 img2"
+    "img1 img1 img2 img2"
+    "img1 img1 img2 img2";
+
+  .img1 {
+    grid-area: img1;
+  }
+
+  .img2 {
+    grid-area: img2;
+  }
+}
+
+.collectionCoverGrid.singleCover {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr; 
+  gap: var(--gap-small) var(--gap-small); 
+  grid-template-areas: 
+    "img1 img1 img1 img1"
+    "img1 img1 img1 img1"
+    "img1 img1 img1 img1"
+    "img1 img1 img1 img1"; 
+
+  .img1 {
+    grid-area: img1;
+  }
+}
+
+/* mobile ---------------------------------------------------------------- */
+@media screen and (max-width: 768px) {
+  .my-masonry-grid {
+    display: -webkit-box;
+    /* Not needed if autoprefixing */
+    display: -ms-flexbox;
+    /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -15px;
+    /* gutter size offset */
+    width: auto;
+  }
+
+  .my-masonry-grid_column {
+    padding-left: 15px;
+    /* gutter size */
+    background-clip: padding-box;
+  }
+
+  /* Style your items */
+  .my-masonry-grid_column>div {
+    /* change div to reference your elements you put in <Masonry> */
+    background: grey;
+    margin-bottom: 15px;
+  }
+
+}
