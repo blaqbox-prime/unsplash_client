@@ -4,9 +4,11 @@ import Header from './Header'
 
 function Root() {
   return (
-    <div className='h-screen max-w-[1920px] mx-auto flex flex-col items-start text-primary'>
+    <div className='h-screen mx-auto flex flex-col items-start text-primary'>
       <Header />   
-      <Outlet />
+      <main className=''>
+        <Outlet />
+      </main>
     </div>
   )
 }

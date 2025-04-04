@@ -6,8 +6,8 @@ import Gallery from '../Components/Gallery'
 function SearchResults() {
   return (
     <main className='flex flex-col items-center'>
-      <img src={assets.images.gradientBg2} alt="" />
-      <Searchbar className='w-5/12 shadow-lg -mt-6 bg-white'/> 
+      <img src={assets.images.gradientBg2} alt="ribbon" className='absolute w-full -z-10 h-[120px]'/>
+      <Searchbar className='w-full md:w-5/12 shadow-lg bg-white mt-[86px]'/> 
       <Gallery className="mt-12 min-w-full px-8 mx-auto"/>
     </main>
   )
