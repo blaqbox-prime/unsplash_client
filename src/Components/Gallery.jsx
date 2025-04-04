@@ -1,30 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {photos} from '../Utils/data'
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
-import { PhotosContext } from '../Hooks/usePhotos';
 // import  from '../Hooks/usePhotos'
-import NoPhotosFound from './NoPhotosFound';
 import Photo from './Photo'
+import Masonry from 'react-masonry-css';
 
-function Gallery() {
+function Gallery({className = ''}) {
 
-  const ctx = useContext(PhotosContext);
-  const [gallaryPhotos, setGalleryPhotos] = useState(photos);
+  const [galleryPhotos, setGalleryPhotos] = useState(photos);
     
-  console.log(ctx);
+  console.log(galleryPhotos)
+
+  const breakpointColumns = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1
+  };
 
   return (
-    <div data-testid="gallery">
-         <ResponsiveMasonry 
-                data-testid="responsive-masonry"
-                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
-            >
-                <Masonry data-testid="masonry-grid" gutter='24px'>
-                  {
-                    photos.map(photo => <Photo key={photo._id} label={photo.label} url={photo.urls.small}/>)
-                  }
-                </Masonry>
-            </ResponsiveMasonry>
+    <div data-testid="gallery" className={className}>
+          <Masonry
+            breakpointCols={breakpointColumns}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column">
+            
+                {
+                  galleryPhotos.map(photo => (<Photo key={photo._id} label={photo.label} url={photo.urls.small}/>))
+                }
+          </Masonry>
+      
+            
     </div>
   )
 }

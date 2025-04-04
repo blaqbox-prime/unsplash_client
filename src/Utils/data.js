@@ -3228,7 +3228,7 @@ export const photos = [
                   "last_name": "Santos",
                   "twitter_username": null,
                   "portfolio_url": "http://marcussantosr.com",
-                  "bio": "Hiperativo, itario e amante da fotometria\r\n Instagram:@marcussantosr",
+                  "bio": "Hiperativo, Publicitario e amante da fotometria\r\n Instagram:@marcussantosr",
                   "location": null,
                   "links": {
                     "self": "https://api.unsplash.com/users/marcussantosr",
