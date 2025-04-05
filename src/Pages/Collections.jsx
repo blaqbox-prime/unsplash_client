@@ -1,10 +1,13 @@
 import React from 'react'
 import Title from '../Components/Title'
 import { useState, useEffect } from 'react'
-import { assets, collections, photos } from '../Utils/data'
+import { collections, photos } from '../Utils/data'
 import { Link } from 'react-router'
-import { capitalize } from 'lodash'
-
+import { capitalize, delay, initial } from 'lodash'
+import AddCollectionCard from '../Components/AddCollectionCard'
+import { AnimatePresence, motion } from "motion/react"
+import { anim, fadeIn, slideIn } from '../Utils/animations'
+import AddCollection from '../Components/AddCollection'
 
 function Collections() {
 
@@ -34,7 +37,7 @@ console.log(collectionsAlbums)
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mx-auto mt-16 '>
           {collectionsAlbums.map( (collection, idx) => (<CollectionCard collection={collection} key={idx}/>) )}
-          <AddCollectionCard />
+          <AddCollection />
       </div>
 
     </div>
@@ -42,6 +45,10 @@ console.log(collectionsAlbums)
 }
 
 export default Collections
+
+
+
+
 
 
 function CollectionCard({collection}) {
@@ -60,6 +67,12 @@ function CollectionCard({collection}) {
   
   return (
     <Link to={`/collections/${collection.id}`} className="group">
+      <AnimatePresence >
+
+      <motion.div className=""
+        {...anim(slideIn)}
+        transition={{ duration: 1, ease: "easeOut"}}
+      >
       <div className={`collectionCoverGrid rounded-md relative w-full h-72 mb-4 overflow-hidden ${coverImagesClass()} group-hover:shadow-lg transition-all duration-300 ease-in-out` }>
         {
           coverImages().map((image, idx) => (
@@ -71,16 +84,10 @@ function CollectionCard({collection}) {
        <div className="">
         <h2 className="font-bold">{capitalize(collection.title)}</h2>
         <p className='text-fadedSecondary'>{`${collection?.photos?.length} photos`}</p>
-       </div>   
+       </div>
+        </motion.div>   
+        </AnimatePresence>
     </Link>
   )
 }
 
-function AddCollectionCard() {
-  return (
-    <div className='cursor-pointer group w-full h-72 bg-fadedLight rounded-md flex flex-col gap-4 items-center justify-center text-fadedSecondary font-bold hover:shadow-lg transition-all duration-300 ease-in-out'>
-      <img src={assets.icons.plus} alt="" className='aspect-square w-9 group-hover:animate-bounce transition-all duration-300 ease-in'/>
-      <p className='text-xl'>Add new collection</p>
-    </div>
-  )
-}

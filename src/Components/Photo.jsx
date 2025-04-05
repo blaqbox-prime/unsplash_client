@@ -13,15 +13,7 @@ function Photo({id, label, url}) {
     console.log({id,label,url})
 
   return (
-    <Transition
-     show={isShowing}
-     enter="transform transition duration-[500ms] delay-[200ms]"
-     enterFrom="opacity-0 scale-50"
-     enterTo="opacity-100 scale-100"
-     leave="transform duration-[500ms] transition ease-in-out"
-     leaveFrom="opacity-100 scale-100 "
-     leaveTo="opacity-0 scale-95 "
-    >
+    
 
     <div className='photo-container hover:cursor-pointer relative shadow-md brightness-95  hover:brightness-110 transition-all duration-300' data-testid="photo-container" >
         {/* <button className='delete-photo absolute top-4 right-4 text-red-600 border border-red-600 z-10' >
@@ -32,7 +24,6 @@ function Photo({id, label, url}) {
          className='Photo transition duration-500 object-cover object-center w-full h-full'
          />
     </div>
-    </Transition>
   )
 }
 
