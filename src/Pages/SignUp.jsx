@@ -6,7 +6,6 @@ import * as yup from "yup";
 import { motion } from "motion/react"
 import { anim, slideIn, tap } from '../Utils/animations';
 import { assets } from '../Utils/data';
-import { delay } from 'lodash';
 import { Link } from 'react-router';
 
 const schema = yup.object({
