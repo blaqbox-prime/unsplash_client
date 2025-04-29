@@ -7,3 +7,4 @@
 .prettierignore
 
 node_modules
+build

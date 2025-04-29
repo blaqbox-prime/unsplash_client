@@ -11,12 +11,12 @@ export const AuthProvider = ({ children }) => {
   // Function to check authentication status
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/auth/status", {
+      const response = await fetch("http://localhost:8080/api/auth/authenticate", {
         credentials: "include", // Include cookies for session-based auth
       });
       if (response.ok) {
         const data = await response.json();
-        setUser(data.user);
+        setUser(data.email);
         setIsAuthenticated(true);
       } else {
         setUser(null);
@@ -30,29 +30,31 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Function to handle login
-  const login = async (credentials) => {
-    try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credentials),
-        credentials: "include",
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setUser(data.user);
-        setIsAuthenticated(true);
-      } else {
-        throw new Error("Login failed");
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      setUser(null);
-      setIsAuthenticated(false);
+ const login = async (credentials) => {
+
+    const response = await fetch("http://localhost:8080/api/auth/authenticate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const { token, user } = data;
+
+      // Store the JWT in local storage or session storage
+      localStorage.setItem("jwt", token);
+
+      // Update the context state
+      setUser(user);
+      setIsAuthenticated(true);
+    } else {
+      throw new Error("User does not exist");
     }
-  };
+
+};
 
   // Function to handle logout
   const logout = async () => {
@@ -74,7 +76,7 @@ export const AuthProvider = ({ children }) => {
 
   // Check authentication status on component mount
   useEffect(() => {
-    checkAuthStatus();
+    // checkAuthStatus();
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Title from '../Components/Title'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,6 +7,8 @@ import { motion } from "motion/react"
 import { anim, slideIn, tap } from '../Utils/animations';
 import { assets } from '../Utils/data';
 import { Link } from 'react-router';
+import { AuthContext } from '../Context/AuthContext';
+import { toast } from 'react-toastify';
 
 const schema = yup.object({
     email: yup.string().email().required(),
@@ -18,7 +20,22 @@ function SignIn() {
         resolver: yupResolver(schema)
     });
 
-    const onSubmit = data => console.log(data);
+    const {login} = useContext(AuthContext);
+
+    const onSubmit = (data) => {
+        console.log(data)
+
+        try {
+            login(data)
+            toast.success("Logged in successfully!")
+        }
+        catch (error) {
+            console.log(error);
+            toast.error("Something went wrong!")
+        }
+        
+    }
+
 
     return (
 

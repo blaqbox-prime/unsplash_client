@@ -29,7 +29,7 @@ console.log(collectionsAlbums)
 
 
   return (
-    <div className='w-full h-full'>
+    <main className='w-full h-full'>
       <div className='text-center mt-16 max-w-sm mx-auto flex flex-col gap-4 '>
         <Title title={"Collections"} className='' />
         <p>Explore the world through collections of beautiful photos free to use under the <span className='underline font-bold'>Unsplash License.</span></p>
@@ -40,7 +40,7 @@ console.log(collectionsAlbums)
           <AddCollection />
       </div>
 
-    </div>
+    </main>
   )
 }
 
