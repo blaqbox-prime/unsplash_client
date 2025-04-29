@@ -1,30 +1,42 @@
 import React, { useContext, useEffect, useState } from 'react'
-//import {photos} from '../Utils/data'
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
-import { PhotosContext } from '../Hooks/usePhotos';
-// import  from '../Hooks/usePhotos'
-import NoPhotosFound from './NoPhotosFound';
+import {photos} from '../Utils/data'
 import Photo from './Photo'
+import Masonry from 'react-masonry-css';
+import {motion} from 'motion/react'
+import { animScrollTrigger, fadeIn } from '../Utils/animations';
 
-function Gallery() {
-
-  const ctx = useContext(PhotosContext);
-  const [gallaryPhotos, setGalleryPhotos] = useState(false);
+function Gallery({images = [],className = ''}) {
     
-  console.log(ctx);
+  console.log(images)
+
+  const breakpointColumns = {
+    default: 4,
+    1100: 3,
+    700: 2,
+  };
+
+  
 
   return (
-    <div data-testid="gallery">
-         <ResponsiveMasonry 
-                data-testid="responsive-masonry"
-                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
-            >
-                <Masonry data-testid="masonry-grid" gutter='24px'>
-                  {
-                    ctx.photos.map(photo => <Photo key={photo._id} label={photo.label} url={photo.url}/>)
-                  }
-                </Masonry>
-            </ResponsiveMasonry>
+    <div data-testid="gallery" className={`mt-12 min-w-full px-8 mx-auto ${className}`}>
+          <Masonry
+            breakpointCols={breakpointColumns}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column">
+            
+                {
+                  images.map(photo => (
+                    <motion.div key={photo._id}
+                      {...animScrollTrigger(fadeIn)}
+                      transition={{duration: 0.5, ease: 'easeInOut'}}
+                    >
+                      <Photo label={photo.label} url={photo.urls.small}/>
+                    </motion.div>
+                  ))
+                }
+          </Masonry>
+      
+            
     </div>
   )
 }
