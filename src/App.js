@@ -8,6 +8,7 @@ import Collections from './Pages/Collections';
 import Collection from './Pages/Collection';
 import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
+import Image from "./Pages/Image";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       {path: '/search', element: <SearchResults />},
       {path: '/collections', element: <Collections />},
       {path: '/collections/:collectionId', element: <Collection />},
+      {path: '/photos/:photoId', element: <Image />},
       {path: '/sign-in', element: <SignIn />},
       {path: '/sign-up', element: <SignUp />},
     ]
