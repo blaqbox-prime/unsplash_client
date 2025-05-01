@@ -1545,6 +1545,10 @@ export const collections = [
     description: "Explore the wonders of the world through stunning photography.",  
     createdAt: "2023-01-01T00:00:00Z",
     updatedAt: "2023-01-10T00:00:00Z",
+    images: [
+      "https://i.pinimg.com/736x/21/d6/ab/21d6ab338655c70ebf8849a7b714c839.jpg",
+        "https://i.pinimg.com/736x/4e/18/50/4e185070bfd6ae67601af54bc314d842.jpg"
+    ],
     user: {
       id: "1",
       name: "John Doe",
@@ -1557,6 +1561,10 @@ export const collections = [
     description: "The beauty of water in its many forms.",  
     createdAt: "2023-01-01T00:00:00Z",
     updatedAt: "2023-01-10T00:00:00Z",
+    images: [
+      "https://i.pinimg.com/736x/21/d6/ab/21d6ab338655c70ebf8849a7b714c839.jpg",
+      "https://i.pinimg.com/736x/4e/18/50/4e185070bfd6ae67601af54bc314d842.jpg"
+    ],
     user: {
       id: "1",
       name: "John Doe",
@@ -1569,6 +1577,10 @@ export const collections = [
     description: "A collection of vacation photos from around the world.",  
     createdAt: "2023-01-01T00:00:00Z",
     updatedAt: "2023-01-10T00:00:00Z",
+    images: [
+      "https://i.pinimg.com/736x/21/d6/ab/21d6ab338655c70ebf8849a7b714c839.jpg",
+      "https://i.pinimg.com/736x/4e/18/50/4e185070bfd6ae67601af54bc314d842.jpg"
+    ],
     user: {
       id: "1",
       name: "John Doe",
