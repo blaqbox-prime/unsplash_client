@@ -6,7 +6,7 @@ import {AnimatePresence, motion} from 'motion/react'
 import { anim, scaleIn } from '../Utils/animations'
 
 
-function AddCollection() {
+function AddCollection({button}) {
     const [isOpen, setIsOpen] = useState(false)
     const [collectionName, setCollectionName] = useState("")
 
@@ -22,7 +22,7 @@ function AddCollection() {
     return (
         <AnimatePresence mode='wait'>
             <div onClick={() => setIsOpen(true)}>
-                <AddCollectionCard />
+                {button}
             </div>
             <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-40">
                 <div className="fixed inset-0 flex w-screen h-screen items-center justify-center p-4">
