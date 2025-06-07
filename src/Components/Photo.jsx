@@ -3,7 +3,7 @@ import { Transition } from '@headlessui/react'
 import {Link} from "react-router";
 
 
-function Photo({id, label, url}) {
+function Photo({_id, label, url}) {
 
     const [isShowing,setShowing] = useState(false)
 
@@ -11,12 +11,11 @@ function Photo({id, label, url}) {
         setShowing(true);
     },800);
 
-    console.log({id,label,url})
 
   return (
     
 
-    <Link to={`/photos/${id}`} >
+    <Link to={`/photos/${_id}`} >
         <div className='photo-container hover:cursor-pointer relative shadow-md brightness-95  hover:brightness-110 transition-all duration-300' data-testid="photo-container" >
             {/* <button className='delete-photo absolute top-4 right-4 text-red-600 border border-red-600 z-10' >
             delete

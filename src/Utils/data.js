@@ -1546,7 +1546,6 @@ export const collections = [
     createdAt: "2023-01-01T00:00:00Z",
     updatedAt: "2023-01-10T00:00:00Z",
     images: [
-      "https://i.pinimg.com/736x/21/d6/ab/21d6ab338655c70ebf8849a7b714c839.jpg",
         "https://i.pinimg.com/736x/4e/18/50/4e185070bfd6ae67601af54bc314d842.jpg"
     ],
     user: {
@@ -1579,6 +1578,7 @@ export const collections = [
     updatedAt: "2023-01-10T00:00:00Z",
     images: [
       "https://i.pinimg.com/736x/21/d6/ab/21d6ab338655c70ebf8849a7b714c839.jpg",
+      "https://i.pinimg.com/736x/4e/18/50/4e185070bfd6ae67601af54bc314d842.jpg",
       "https://i.pinimg.com/736x/4e/18/50/4e185070bfd6ae67601af54bc314d842.jpg"
     ],
     user: {
@@ -1596,6 +1596,7 @@ export const collections = [
     hero: "/resources/hero-image.png",
     heroLeft: "/resources/hero-left.png",
     heroRight: "/resources/hero-right.png",
+    placeholder: "/resources/placeholder-image.jpg"
   },
 
   icons: {

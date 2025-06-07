@@ -30,7 +30,7 @@ function Gallery({images = [],className = ''}) {
                       {...animScrollTrigger(fadeIn)}
                       transition={{duration: 0.5, ease: 'easeInOut'}}
                     >
-                      <Photo label={photo.label} url={photo.urls.small}/>
+                      <Photo label={photo.label} url={photo.url} _id={photo._id}/>
                     </motion.div>
                   ))
                 }

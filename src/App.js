@@ -9,6 +9,7 @@ import Collection from './Pages/Collection';
 import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
 import Image from "./Pages/Image";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const router = createBrowserRouter([
   {
@@ -32,8 +33,13 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+
+  const queryClient = new QueryClient();
+
   return ( 
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
 

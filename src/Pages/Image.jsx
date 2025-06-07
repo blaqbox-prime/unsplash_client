@@ -5,9 +5,18 @@ import {FiMinus} from "react-icons/fi";
 import {TbDownload} from "react-icons/tb";
 import IconButton from '../Components/IconButton';
 import AddToCollectionDialog from '../Components/AddToCollectionDialog';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router';
+import Loading from '../Components/Loading';
+import { getImage } from '../Utils/api';
 
 
 function Image() {
+
+    const params = useParams()
+
+    const {data, error, isLoading} = useQuery({ queryKey: [`photos/${params.photoId}`], queryFn: () => getImage(params.photoId) })
+
 
     const user = {
         id: 5,
@@ -20,11 +29,15 @@ function Image() {
         alert("We Downloading ur pic please wait")
     }
 
-    return (
+    if (error) {
+        return <h1>{error.message}</h1>
+    }
+
+    return isLoading ? <Loading /> : (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full h-full py-10">
         {/*Image*/}
         <div className="w-full overflow-hidden rounded-md max-h-[90vh]">
-            <img src="https://i0.wp.com/imaginewithrashid.com/wp-content/uploads/2024/10/rashidckk_A_retro_girl_with_long_black_curly_hair_wearing_sun_5e419493-83a7-49c9-a1eb-463520441672_0.webp?resize=574%2C1024&ssl=1"
+            <img src={data.url}
                  alt=""
                  className="w-full h-full object-cover"
             />
