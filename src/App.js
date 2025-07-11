@@ -10,6 +10,7 @@ import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
 import Image from "./Pages/Image";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AuthProvider } from './Context/AuthContext';
 
 const router = createBrowserRouter([
   {
@@ -34,13 +35,10 @@ const router = createBrowserRouter([
 
 function App() {
 
-  const queryClient = new QueryClient();
 
   return ( 
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
+        <RouterProvider router={router} />
+    );
 }
 
 export default App;

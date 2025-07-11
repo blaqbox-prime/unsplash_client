@@ -1,8 +1,16 @@
+import { Rings } from "react-loader-spinner"
+
 function Loading() {
   return (
-    <div className='text-center mx-auto text-lg'>
-      <h1>loading...</h1>
-    </div>
+    <Rings
+  visible={true}
+  height="26"
+  width="26"
+  color="#ffff"
+  ariaLabel="rings-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  />
   )
 }
 

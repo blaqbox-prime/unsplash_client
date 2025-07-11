@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { API_BASE_URL } from '../Utils/api';
 
@@ -8,6 +8,52 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('jwt_token'));
     const [isAuthenticated, setIsAuthenticated] = useState(!!token);
     const queryClient = useQueryClient();
+
+     // Query to validate token and get user data
+    const {
+        data: user,
+        isLoading,
+        isError,
+        error
+    } = useQuery({
+        queryKey: ['user', token],
+        queryFn: async () => {
+            if (!token) return null;
+            
+            const response = await fetch(`${API_BASE_URL}/auth/authenticate`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                // Token is invalid, clear it
+                localStorage.removeItem('jwt_token');
+                setToken(null);
+                setIsAuthenticated(false);
+                throw new Error('Token validation failed');
+            }
+
+            return response.json();
+        },
+        enabled: !!token,
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        cacheTime: 10 * 60 * 1000, // 10 minutes
+        retry: (failureCount, error) => {
+            // Don't retry on 401/403 errors
+            if (error.message.includes('401') || error.message.includes('403')) {
+                return false;
+            }
+            return failureCount < 3;
+        },
+        onError: () => {
+            // Clear token on validation error
+            localStorage.removeItem('jwt_token');
+            setToken(null);
+            setIsAuthenticated(false);
+        }
+    });
 
 
     // Login mutation
@@ -111,9 +157,9 @@ export const AuthProvider = ({ children }) => {
     };
 
     // Wrapper functions for easier use
-    const login = async (username, password) => {
+    const login = async (email, password) => {
         try {
-            await loginMutation.mutateAsync({ username, password });
+            await loginMutation.mutateAsync({ email, password });
             return { success: true };
         } catch (error) {
             return { success: false, message: error.message || 'An unexpected error occurred during login.' };
@@ -156,8 +202,9 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+
     return (
-        <AuthContext.Provider value={authContextValue}>
+            <AuthContext.Provider value={authContextValue}>
             {children}
         </AuthContext.Provider>
     );
