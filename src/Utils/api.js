@@ -1,7 +1,6 @@
-const BASE_URL = "http://localhost:8080/api/v1"
-const AUTH_URL = "http://localhost:8080/api/auth"
+export const API_BASE_URL = 'http://localhost:8080/api/v1/';
 
-// Requests
+// Images --------------------------------------
 export const searchImages = async (query) => {
     const response = await fetch(`${BASE_URL}/images/${query && `search?query=${encodeURIComponent(query)}`}`);
     let data = [], error = null;
@@ -14,6 +13,7 @@ export const searchImages = async (query) => {
     return {data, error};
 }
 
+// Collections -------------------------------
 export const getAllCollections = async () => {
     const response = await fetch(`${BASE_URL}/collections`);
     let data = []
@@ -28,3 +28,8 @@ export const getImage = async (id) => {
     console.log(data);
     return data;
 }
+
+// Profiles
+
+
+// Auth
