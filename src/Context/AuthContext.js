@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
         queryFn: async () => {
             if (!token) return null;
             
-            const response = await fetch(`${API_BASE_URL}/auth/authenticate`, {
+            const response = await fetch(`${API_BASE_URL}/auth/me`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ export const AuthProvider = ({ children }) => {
             headers['Authorization'] = `Bearer ${token}`;
         }
 
-        const response = await fetch(url, {
+        const response = await fetch(API_BASE_URL + url, {
             ...options,
             headers,
         });

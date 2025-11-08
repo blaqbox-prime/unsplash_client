@@ -4,14 +4,35 @@ import { useState } from 'react'
 import AddCollectionCard from './AddCollectionCard'
 import {AnimatePresence, motion} from 'motion/react'
 import { anim, scaleIn } from '../Utils/animations'
+import { toast } from 'react-toastify'
+import { useAuth } from '../Context/AuthContext'
+import Loading from './Loading'
 
 
 function AddCollection({button}) {
     const [isOpen, setIsOpen] = useState(false)
     const [collectionName, setCollectionName] = useState("")
 
-    const handleSave = () => {
+    const {authFetch, loading, user} = useAuth()  
+
+    const handleSave = async () => {
+        try {
+            const response = await authFetch("/collections", {
+                method: "POST",
+                body: JSON.stringify({author: user?.username, title: collectionName}),
+                headers: {
+                    "Content-Type" :'application/json'
+                }
+            })
+            console.log(response)
+            toast.success("Collection Created")
+
+        } catch (error) {
+            console.log(error)
+            toast.error(error)            
+        }
         setIsOpen(false)
+
     }
 
     const handleCancel = () => {
@@ -37,7 +58,7 @@ function AddCollection({button}) {
                         value={collectionName} onChange={(e) => setCollectionName(e.target.value)}
                         className="active:outline-secondary focus:outline-secondary  placeholder:italic w-full border border-light rounded-md p-3 shadow-sm transition-all duration-200" />
                         <div className="flex gap-4 justify-center mt-4">
-                            <button className="cursor-pointer font-semibold text-primary transition-all duration-200 bg-fadedLight px-6 py-2 rounded-sm" onClick={handleSave}>Save</button>
+                            <button className="cursor-pointer font-semibold text-primary transition-all duration-200 bg-fadedLight px-6 py-2 rounded-sm" disabled={loading} onClick={handleSave}>{!loading ? "Save" : <Loading />}</button>
                             <button className="cursor-pointer font-semibold text-primary transition-all duration-200 px-6 py-2 rounded-sm" onClick={handleCancel}>Cancel</button>
                         </div>
                     </motion.DialogPanel>

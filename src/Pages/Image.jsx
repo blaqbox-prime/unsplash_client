@@ -17,6 +17,8 @@ function Image() {
 
     const {data, error, isLoading} = useQuery({ queryKey: [`photos/${params.photoId}`], queryFn: () => getImage(params.photoId) })
 
+    console.log(data)
+
 
     const user = {
         id: 5,

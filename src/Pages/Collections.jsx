@@ -15,8 +15,6 @@ function Collections() {
 
   const {data, error, isLoading} = useQuery({ queryKey: ['collections'], queryFn: getAllCollections })
 
-// console.log(collectionsAlbums)
-
   if(error){
     return (<h1>This is an error page: {error.message}</h1>)
   }
@@ -29,7 +27,7 @@ function Collections() {
       </div>
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mx-auto mt-16 '>
-          {data.map( (collection, idx) => (<CollectionCard collection={collection} key={idx}/>) )}
+          {data.map( (collection, idx) => (<CollectionCard collection={collection} key={collection._id}/>) )}
           <AddCollection button={<AddCollectionCard />}/>
       </div>
 
@@ -48,7 +46,7 @@ function CollectionCard({collection}) {
   
   const coverImages = () => {
     if (collection.images?.length != 0) {
-      return collection.images.map((image) => image).slice(0, 3) 
+      return collection.images.slice(0, 3)
     }
     return [assets.images.placeholder]
   } 
@@ -63,7 +61,6 @@ function CollectionCard({collection}) {
   
   return (
     <Link to={`/collections/${collection._id}`} className="group">
-      <AnimatePresence >
 
       <motion.div className=""
         {...anim(slideIn)}
@@ -72,7 +69,7 @@ function CollectionCard({collection}) {
       <div className={`collectionCoverGrid rounded-md relative w-full h-72 mb-4 overflow-hidden ${coverImagesClass()} group-hover:shadow-lg transition-all duration-300 ease-in-out` }>
         {
           coverImages().map((image, idx) => (
-            <img src={image} key={idx} alt="cover" className={`w-full h-full object-cover img${idx+1}`}/>
+            <img src={image.url} key={image._id} alt="cover" className={`w-full h-full object-cover img${idx+1}`}/>
           ))
         }
       </div>
@@ -82,7 +79,6 @@ function CollectionCard({collection}) {
         <p className='text-fadedSecondary'>{`${collection?.images?.length} photos`}</p>
        </div>
         </motion.div>   
-        </AnimatePresence>
     </Link>
   )
 }
