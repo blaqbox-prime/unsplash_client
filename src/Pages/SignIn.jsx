@@ -7,27 +7,33 @@ import { motion } from "motion/react"
 import { anim, slideIn, tap } from '../Utils/animations';
 import { assets } from '../Utils/data';
 import { Link } from 'react-router';
-import { AuthContext } from '../Context/AuthContext';
+import { AuthContext, useAuth } from '../Context/AuthContext';
 import { toast } from 'react-toastify';
+import Loading from '../Components/Loading';
+import { useNavigate } from 'react-router';
 
 const schema = yup.object({
     email: yup.string().email().required(),
     password: yup.string().required(),
 }).required();
 
+
+
 function SignIn() {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
-
-    const {login} = useContext(AuthContext);
+    
+    const {loading, login} = useAuth();
+    const navigator = useNavigate()
 
     const onSubmit = (data) => {
         console.log(data)
 
         try {
-            login(data)
+            login(data.email, data.password)
             toast.success("Logged in successfully!")
+            navigator("/",{replace:true});
         }
         catch (error) {
             console.log(error);
@@ -76,7 +82,8 @@ function SignIn() {
                 <div className="flex flex-col gap-2">
                     <motion.button
                         {...anim(tap)}
-                        type="submit" className='bg-primary text-light p-2 rounded-md'>Sign In</motion.button>
+                        disabled={loading}
+                        type="submit" className='bg-primary text-light p-2 rounded-md flex items-center justify-center transition-all'>{!loading ? "Sign In" : <Loading />}</motion.button>
                     <Link to={"/sign-up"} className='text-center'>
                         <motion.button
                             {...anim(tap)}
