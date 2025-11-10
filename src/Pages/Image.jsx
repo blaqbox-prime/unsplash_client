@@ -10,6 +10,7 @@ import { useParams } from 'react-router';
 import Loading from '../Components/Loading';
 import { getImage } from '../Utils/api';
 import CollectionsWithImage from "../Components/CollectionsWithImage";
+import {format} from "date-fns";
 
 
 function Image() {
@@ -48,11 +49,11 @@ function Image() {
         {/* Details   */}
         <section className="space-y-5">
             <div className="flex items-center gap-2">
-                <img src={user.avatar} alt="" className="w-10 h-10 object-cover rounded-full" />
-                <h1 className="font-semibold">{user.name}</h1>
+                <img src={data.profile.avatar} alt="" className="w-10 h-10 object-cover rounded-full" />
+                <h1 className="font-semibold">{data.profile.fullName}</h1>
             </div>
 
-            <p>Published on October 31, 2023</p>
+            <p>Published on {format(data.date_added, "MMMM dd, yyyy")}</p>
 
             <div className="flex items-center gap-4">
                 <AddToCollectionDialog imageId={params.photoId} />

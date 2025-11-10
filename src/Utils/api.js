@@ -50,8 +50,7 @@ export const getCollection = async (id) => {
 
 export const getImage = async (id) => {
     const response = await fetch(`${API_BASE_URL}/images/${id}`);
-    const data = await response.json();
-    return data;
+    return await response.json();
 }
 
 
