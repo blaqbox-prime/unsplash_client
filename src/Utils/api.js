@@ -21,6 +21,26 @@ export const getAllCollections = async () => {
     return data;
 }
 
+export const getAllCollectionsWithImageId = async (imageId) => {
+    const response = await fetch(`${API_BASE_URL}/collections/including/${imageId}`);
+    let data = []
+    data = await response.json();
+    return data;
+}
+
+export const removeImageFromCollection = async (collectionId, imageId) => {
+    return await fetch(`${API_BASE_URL}/collections/${collectionId}/images/${imageId}`, {
+        method: 'DELETE'
+    });
+}
+
+export const addImageToCollection = async (collectionId, imageId) => {
+    return await fetch(`${API_BASE_URL}/collections/${collectionId}/images/${imageId}`, {
+        method: 'POST'
+    });
+}
+
+
 export const getCollection = async (id) => {
     const response = await fetch(`${API_BASE_URL}/collections/${id}`);
     let data = []
@@ -33,6 +53,7 @@ export const getImage = async (id) => {
     const data = await response.json();
     return data;
 }
+
 
 // Profiles
 

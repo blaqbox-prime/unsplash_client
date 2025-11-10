@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router';
 import Loading from '../Components/Loading';
 import { getImage } from '../Utils/api';
+import CollectionsWithImage from "../Components/CollectionsWithImage";
 
 
 function Image() {
@@ -54,34 +55,13 @@ function Image() {
             <p>Published on October 31, 2023</p>
 
             <div className="flex items-center gap-4">
-                <AddToCollectionDialog />
+                <AddToCollectionDialog imageId={params.photoId} />
 
                 <IconButton icon={<TbDownload />} onClick={handleDownload} text={"Download"}/>
 
             </div>
 
-            <section className="">
-                <h1 className="font-semibold text-2xl mt-10">Collections</h1>
-                <div className="flex flex-col gap-4">
-                    {collections.map(collection => (
-                        <div className="group flex items-center justify-between p-2 rounded-md hover:bg-gray-200 cursor-pointer">
-                            <div className="flex items-center gap-4">
-                                <img src={collection.images[0]} alt="" className="h-16 w-16 object-cover rounded-md"/>
-                                <div>
-                                    <p className="font-semibold">{collection.title}</p>
-                                    <p className="text-secondary">{collection.images.length} photos</p>
-                                </div>
-                            </div>
-
-                            <div className="hidden items-center gap-3 font-bold cursor-pointer group-hover:flex">
-                                <FiMinus />
-                                <p>Remove</p>
-                            </div>
-
-                        </div>
-                    ))}
-                </div>
-            </section>
+           < CollectionsWithImage imageId={params.photoId} />
 
         </section>
 
