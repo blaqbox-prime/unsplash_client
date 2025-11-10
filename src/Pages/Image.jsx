@@ -1,7 +1,4 @@
 import React from 'react'
-import {collections} from "../Utils/data";
-import {HiPlus} from "react-icons/hi";
-import {FiMinus} from "react-icons/fi";
 import {TbDownload} from "react-icons/tb";
 import IconButton from '../Components/IconButton';
 import AddToCollectionDialog from '../Components/AddToCollectionDialog';
@@ -18,16 +15,6 @@ function Image() {
     const params = useParams()
 
     const {data, error, isLoading} = useQuery({ queryKey: [`photos/${params.photoId}`], queryFn: () => getImage(params.photoId) })
-
-    console.log(data)
-
-
-    const user = {
-        id: 5,
-        name: "Michael Baccin",
-        username: "michaelbaccin",
-        avatar: "https://i.pinimg.com/736x/eb/76/a4/eb76a46ab920d056b02d203ca95e9a22.jpg"
-    }
 
     function handleDownload() {
         alert("We Downloading ur pic please wait")
