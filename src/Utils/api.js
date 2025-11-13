@@ -1,9 +1,5 @@
-import dotenv from 'dotenv'
-dotenv.config();
-
 export const API_BASE_URL = `${process.env.REACT_APP_SPRING_BACKEND_URL}`;
 
-console.log("API: " + API_BASE_URL)
 
 // Images --------------------------------------
 export const searchImages = async (query) => {
@@ -19,6 +15,7 @@ export const searchImages = async (query) => {
 
 // Collections -------------------------------
 export const getAllCollections = async () => {
+    console.log("API: " + API_BASE_URL)
     const response = await fetch(`${API_BASE_URL}/collections`);
     let data = []
     data = await response.json();
