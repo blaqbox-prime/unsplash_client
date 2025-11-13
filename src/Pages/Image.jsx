@@ -8,6 +8,7 @@ import Loading from '../Components/Loading';
 import { getImage } from '../Utils/api';
 import CollectionsWithImage from "../Components/CollectionsWithImage";
 import {format} from "date-fns";
+import _ from "lodash";
 
 
 function Image() {
@@ -17,7 +18,13 @@ function Image() {
     const {data, error, isLoading} = useQuery({ queryKey: [`photos/${params.photoId}`], queryFn: () => getImage(params.photoId) })
 
     function handleDownload() {
-        alert("We Downloading ur pic please wait")
+        const a = document.createElement("a");
+        let ext = _.slice(data.url, _.lastIndexOf(data.url, "."), data.url.length).join("");
+        a.href = data.url;
+        a.download = `${data.label + data._id + ext}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
     }
 
     if (error) {
@@ -25,7 +32,7 @@ function Image() {
     }
 
     return isLoading ? <Loading /> : (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full h-full py-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full h-full py-10 dark:text-light">
         {/*Image*/}
         <div className="w-full overflow-hidden rounded-md max-h-[90vh]">
             <img src={data.url}
@@ -42,7 +49,7 @@ function Image() {
 
             <p>Published on {format(data.date_added, "MMMM dd, yyyy")}</p>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 text-primary ">
                 <AddToCollectionDialog imageId={params.photoId} />
 
                 <IconButton icon={<TbDownload />} onClick={handleDownload} text={"Download"}/>

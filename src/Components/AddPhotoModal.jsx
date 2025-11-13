@@ -94,7 +94,7 @@ function AddPhotoModal({isOpen, onClose}) {
       });
 
       
-      if(res.status != 200) return toast.warn("Failed to upload photo to cloud");
+      if(res.status !== 200) return toast.warn("Failed to upload photo to cloud");
       
      res.json().then((data) => {
       console.log(data.data.url);

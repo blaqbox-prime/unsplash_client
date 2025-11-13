@@ -29,15 +29,15 @@ const BtnRemoveImageFromCollection = ({imageId, collectionId}) => {
 
     return (
         <>
-        <div className="hidden items-center gap-3 font-bold cursor-pointer group-hover:flex hover:text-red-700" onClick={() => setIsOpen(true)} >
+        <div className="hidden items-center gap-3 font-bold cursor-pointer group-hover:flex hover:text-red-700 dark:hover:text-red-500" onClick={() => setIsOpen(true)} >
                 <FiMinus />
                 <p>Remove</p>
         </div>
             <Dialog transition open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
                 <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-                    <DialogPanel className="max-w-lg space-y-4 border bg-white p-12 rounded-md">
+                    <DialogPanel className="max-w-lg space-y-4 border bg-white p-12 rounded-md dark:bg-primary dark:text-light  dark:shadow-fadedLight/50 dark:shadow-md ">
                         <DialogTitle className="font-bold text-2xl">Remove image from collection?</DialogTitle>
-                        <Description className="text-secondary text-sm">This will permanently remove this image from the collection</Description>
+                        <Description className="text-secondary text-sm dark:text-fadedLight">This will permanently remove this image from the collection</Description>
                         <p className="">Are you sure you want to remove this image from the collection? This action cannot be undone.</p>
                         { !loading ? (<div className="flex gap-4">
                             <button className=" p-2 rounded-md text-white bg-gray-400 hover:bg-gray-600" onClick={() => setIsOpen(false)} disabled={loading}>Cancel</button>

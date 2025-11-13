@@ -29,6 +29,7 @@ function Gallery({images = [],className = ''}) {
                     <motion.div key={photo._id}
                       {...animScrollTrigger(fadeIn)}
                       transition={{duration: 0.5, ease: 'easeInOut'}}
+                        className="transition-all duration-200 rounded-md overflow-clip"
                     >
                       <Photo label={photo.label} url={photo.url} _id={photo._id}/>
                     </motion.div>

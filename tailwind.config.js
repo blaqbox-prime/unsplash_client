@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  darkMode: 'class', // Enables dark mode using a class
+  darkMode: 'media', // Enables dark mode using a class
   content: ['./src/**/*.{html,js,ts,jsx,tsx}'], // Specify the paths for your files
   theme: {
     extend: {
@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: [
       require('@tailwindcss/line-clamp'),
+
   ],
 
 }
