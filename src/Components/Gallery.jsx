@@ -1,5 +1,3 @@
-import React, { useContext, useEffect, useState } from 'react'
-import {photos} from '../Utils/data'
 import Photo from './Photo'
 import Masonry from 'react-masonry-css';
 import {motion} from 'motion/react'

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router'
 import Header from './Header'
-import Searchbar from "./Searchbar";
 import {assets} from "../Utils/data";
 
 function AppRoot() {

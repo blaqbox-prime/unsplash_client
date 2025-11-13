@@ -1,5 +1,4 @@
 import React from 'react'
-import {FiMinus} from "react-icons/fi";
 import {useQuery} from "@tanstack/react-query";
 import {getAllCollectionsWithImageId} from "../Utils/api";
 import Loading from "./Loading";

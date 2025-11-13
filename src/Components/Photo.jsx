@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Transition } from '@headlessui/react'
 import {Link} from "react-router";
 
 
 function Photo({_id, label, url}) {
 
-    const [isShowing,setShowing] = useState(false)
+    const [,setShowing] = useState(false)
 
     setTimeout(() => {
         setShowing(true);

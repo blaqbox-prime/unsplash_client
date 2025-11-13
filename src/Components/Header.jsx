@@ -1,9 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { MdSearch } from 'react-icons/md'
-// import { PhotosContext } from '../Hooks/usePhotos';
-import AddPhotoModal from './AddPhotoModal'
 import { assets } from '../Utils/data';
-import { Link, NavLink, useParams } from 'react-router';
+import { Link, NavLink} from 'react-router';
 import { capitalize } from 'lodash';
 import { useAuth } from '../Context/AuthContext';
 
@@ -35,7 +31,7 @@ function Header() {
               ].join(' ').concat(' transition-all duration-300')}
               >
                 <li className={`
-                  ${(isAuthenticated && user && link.title == "sign in") && "hidden"}
+                  ${(isAuthenticated && user && link.title === "sign in") && "hidden"}
                   cursor-pointer font-semibold dark:text-secondary text-primary transition-all duration-200 px-3 py-2 rounded-sm hover:text-primary dark:hover:text-primary dark:hover:bg-light`}>{capitalize(link.title)}</li>
               </NavLink>
             ))}

@@ -27,7 +27,7 @@ function Collections() {
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mx-auto mt-16 '>
-                {data.map( (collection, idx) => (<CollectionCard collection={collection} key={collection._id}/>) )}
+                {data.map( (collection) => (<CollectionCard collection={collection} key={collection._id}/>) )}
                 <AddCollection button={<AddCollectionCard />}/>
             </div>
 
@@ -44,7 +44,7 @@ export default Collections
 
 function CollectionCard({collection}) {
     const [imagesLoaded, setImagesLoaded] = useState(false)
-    const [loadedCount, setLoadedCount] = useState(0)
+    const [, setLoadedCount] = useState(0)
 
     const coverImages = () => {
         if (collection.images?.length !== 0) {
@@ -99,7 +99,7 @@ function CollectionCard({collection}) {
             }
         }
 
-    }, [imagesLoaded])
+    }, )
 
     return (
         <Link to={`/collections/${collection._id}`} className="group">

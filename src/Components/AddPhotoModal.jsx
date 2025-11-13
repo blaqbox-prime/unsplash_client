@@ -13,7 +13,7 @@ import { PhotosContext } from '../Hooks/usePhotos';
 
 function AddPhotoModal({isOpen, onClose}) {
 
-   const {register, handleSubmit,reset, setValue, getValues, formState: {errors}} = useForm();
+   const {register, handleSubmit,reset, setValue, getValues} = useForm();
     const [loading,setLoading] = useState(false); 
     const [submitting,setSubmitting] = useState(false);
     const cancelButtonRef = useRef(null)

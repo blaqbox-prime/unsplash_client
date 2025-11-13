@@ -1,4 +1,4 @@
-import {useState, useEffect, createContext, Children} from 'react';
+import {useState, useEffect, createContext} from 'react';
 import { useDebouncedEffect } from './useDebounceEffect';
 
 export const PhotosContext = createContext();
@@ -49,7 +49,7 @@ export default function PhotosProvider({children}){
         })
     }
 
-    const SearchByLabel = (label) => {
+    const SearchByLabel = () => {
         fetch(`http://localhost:8080/photos/${Searchlabel.toLowerCase()}`)
         .then(res => res.json())
         .then(data => {

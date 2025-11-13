@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react'
 import Title from "../Components/Title";
-import {photos} from '../Utils/data'
 import Gallery from "../Components/Gallery";
 import {useQuery} from "@tanstack/react-query";
-import {getAllCollections, getCollection} from "../Utils/api";
+import {getCollection} from "../Utils/api";
 import {useParams} from "react-router";
 import Loading from "../Components/Loading";
 
