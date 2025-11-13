@@ -1,4 +1,3 @@
-import React, { useContext } from 'react'
 import Title from '../Components/Title'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,7 +6,7 @@ import { motion } from "motion/react"
 import { anim, slideIn, tap } from '../Utils/animations';
 import { assets } from '../Utils/data';
 import { Link } from 'react-router';
-import { AuthContext, useAuth } from '../Context/AuthContext';
+import { useAuth } from '../Context/AuthContext';
 import { toast } from 'react-toastify';
 import Loading from '../Components/Loading';
 import { useNavigate } from 'react-router';

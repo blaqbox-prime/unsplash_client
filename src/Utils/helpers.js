@@ -1,4 +1,4 @@
-export const urlPatternRegex = new RegExp(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/);
+export const urlPatternRegex = new RegExp(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/);
 export const urlPlaceholder = 'https://images.unsplash.com/photo-1565214975484-3cfa9e56f914?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8Nnx8b2NlYW58ZW58MHx8fHwxNjc1OTUwNTUy&ixlib=rb-4.0.3&q=80';
 
 export function ImageToBase64(image) {

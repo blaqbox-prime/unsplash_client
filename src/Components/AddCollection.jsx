@@ -1,7 +1,6 @@
 import React from 'react'
-import { Dialog, DialogPanel, DialogTitle, Input } from '@headlessui/react'
+import { Dialog, DialogTitle, Input } from '@headlessui/react'
 import { useState } from 'react'
-import AddCollectionCard from './AddCollectionCard'
 import {AnimatePresence, motion} from 'motion/react'
 import { anim, scaleIn } from '../Utils/animations'
 import { toast } from 'react-toastify'

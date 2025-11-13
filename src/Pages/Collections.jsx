@@ -23,11 +23,11 @@ function Collections() {
         <main className='w-full h-full'>
             <div className='text-center mt-16 max-w-sm mx-auto flex flex-col gap-4 '>
                 <Title title={"Collections"} className='' />
-                <p>Explore the world through collections of beautiful photos free to use under the <span className='underline font-bold'>Unsplash License.</span></p>
+                <p className="dark:text-light">Explore the world through collections of beautiful photos free to use under the <span className='underline font-bold'>Unsplash License.</span></p>
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mx-auto mt-16 '>
-                {data.map( (collection, idx) => (<CollectionCard collection={collection} key={collection._id}/>) )}
+                {data.map( (collection) => (<CollectionCard collection={collection} key={collection._id}/>) )}
                 <AddCollection button={<AddCollectionCard />}/>
             </div>
 
@@ -44,7 +44,7 @@ export default Collections
 
 function CollectionCard({collection}) {
     const [imagesLoaded, setImagesLoaded] = useState(false)
-    const [loadedCount, setLoadedCount] = useState(0)
+    const [, setLoadedCount] = useState(0)
 
     const coverImages = () => {
         if (collection.images?.length !== 0) {
@@ -64,48 +64,49 @@ function CollectionCard({collection}) {
 
     // Preload images
     useEffect(() => {
-        setImagesLoaded(false)
-        setLoadedCount(0)
 
-        const imageElements = images.map(img => {
-            const imageElement = new Image()
-            imageElement.src = img.url
-            return imageElement
-        })
-
-        const handleImageLoad = () => {
-            setLoadedCount(prev => {
-                const newCount = prev + 1
-                if (newCount === images.length) {
-                    setImagesLoaded(true)
-                }
-                return newCount
+        if(!imagesLoaded){
+            const imageElements = images.map(img => {
+                const imageElement = new Image()
+                imageElement.src = img.url
+                return imageElement
             })
-        }
 
-        imageElements.forEach(img => {
-            if (img.complete) {
-                handleImageLoad()
-            } else {
-                img.addEventListener('load', handleImageLoad)
-                img.addEventListener('error', handleImageLoad) // Handle errors gracefully
+            const handleImageLoad = () => {
+                setLoadedCount(prev => {
+                    const newCount = prev + 1
+                    if (newCount === images.length) {
+                        setImagesLoaded(true)
+                    }
+                    return newCount
+                })
             }
-        })
 
-        return () => {
             imageElements.forEach(img => {
-                img.removeEventListener('load', handleImageLoad)
-                img.removeEventListener('error', handleImageLoad)
+                if (img.complete) {
+                    handleImageLoad()
+                } else {
+                    img.addEventListener('load', handleImageLoad)
+                    img.addEventListener('error', handleImageLoad) // Handle errors gracefully
+                }
             })
+
+            return () => {
+                imageElements.forEach(img => {
+                    img.removeEventListener('load', handleImageLoad)
+                    img.removeEventListener('error', handleImageLoad)
+                })
+            }
         }
-    }, [collection._id, images])
+
+    }, )
 
     return (
         <Link to={`/collections/${collection._id}`} className="group">
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
                 {!imagesLoaded ? (
                     <motion.div
-                        key="skeleton"
+                        key={`skeleton-${collection._id}`}
                         initial={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className="w-full h-72 mb-4 bg-gray-200 dark:bg-gray-800 rounded-md animate-pulse"
@@ -134,8 +135,8 @@ function CollectionCard({collection}) {
                         </div>
 
                         <div className="">
-                            <h2 className="font-bold">{capitalize(collection.title)}</h2>
-                            <p className='text-fadedSecondary'>{`${collection?.images?.length} photos`}</p>
+                            <h2 className="font-bold text-primary dark:text-light">{capitalize(collection.title)}</h2>
+                            <p className='text-fadedSecondary dark:text-fadedLight'>{`${collection?.images?.length} photos`}</p>
                         </div>
                     </motion.div>
                 )}

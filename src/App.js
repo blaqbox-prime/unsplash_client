@@ -9,8 +9,6 @@ import Collection from './Pages/Collection';
 import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
 import Image from "./Pages/Image";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { AuthProvider } from './Context/AuthContext';
 
 const router = createBrowserRouter([
   {

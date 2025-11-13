@@ -1,5 +1,3 @@
-import React, { useContext, useEffect, useState } from 'react'
-import {photos} from '../Utils/data'
 import Photo from './Photo'
 import Masonry from 'react-masonry-css';
 import {motion} from 'motion/react'
@@ -29,6 +27,7 @@ function Gallery({images = [],className = ''}) {
                     <motion.div key={photo._id}
                       {...animScrollTrigger(fadeIn)}
                       transition={{duration: 0.5, ease: 'easeInOut'}}
+                        className="transition-all duration-200 rounded-md overflow-clip"
                     >
                       <Photo label={photo.label} url={photo.url} _id={photo._id}/>
                     </motion.div>

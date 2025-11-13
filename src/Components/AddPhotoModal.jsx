@@ -13,7 +13,7 @@ import { PhotosContext } from '../Hooks/usePhotos';
 
 function AddPhotoModal({isOpen, onClose}) {
 
-   const {register, handleSubmit,reset, setValue, getValues, formState: {errors}} = useForm();
+   const {register, handleSubmit,reset, setValue, getValues} = useForm();
     const [loading,setLoading] = useState(false); 
     const [submitting,setSubmitting] = useState(false);
     const cancelButtonRef = useRef(null)
@@ -94,7 +94,7 @@ function AddPhotoModal({isOpen, onClose}) {
       });
 
       
-      if(res.status != 200) return toast.warn("Failed to upload photo to cloud");
+      if(res.status !== 200) return toast.warn("Failed to upload photo to cloud");
       
      res.json().then((data) => {
       console.log(data.data.url);

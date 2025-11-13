@@ -1,4 +1,4 @@
-import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import {useEffect, useState} from 'react'
 import { HiPlus } from 'react-icons/hi';
 import IconButton from './IconButton';
@@ -46,11 +46,14 @@ function AddToCollectionDialog({imageId}) {
         
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
           <div className="bg-black opacity-60 w-screen h-screen absolute"></div>
-          <DialogPanel className="overflow-y-scroll z-50 max-w-2xl max-h-[80vh] space-y-4 border bg-white p-12 w-full">
+          {/*  className="max-w-lg space-y-4 border bg-white p-12 rounded-md dark:bg-primary dark:text-light  dark:shadow-fadedLight/50 dark:shadow-md " */}
+          <DialogPanel className="overflow-y-scroll z-50 max-w-2xl max-h-[80vh] space-y-4 border bg-white p-12 transition-all duration-200
+          rounded-md dark:bg-primary dark:text-light  dark:shadow-fadedLight/50 dark:shadow-md scroll-smooth no-scrollbar
+          ">
             <DialogTitle className="font-semibold text-center text-xl mb-10 ">Add to Collection</DialogTitle>
             <div className="grid grid-cols-3 gap-4 mb-8">
                                 {collections.length > 0 && collections.map(collection => (
-                                    <div key={collection._id} className={`group flex items-center justify-between p-2 rounded-md hover:bg-gray-200 cursor-pointer hover:shadow-lg transition-all duration-300 ease-in-out
+                                    <div key={collection._id} className={`group flex items-center justify-between p-2 rounded-md hover:bg-gray-200 dark:hover:bg-light/70 cursor-pointer hover:shadow-lg transition-all duration-300 ease-in-out
                                     ${actionLoading && "pointer-events-none opacity-50 cursor-not-allowed"}
                                     `}
                                          onClick={() => handleAddToCollection(collection)}
@@ -59,8 +62,8 @@ function AddToCollectionDialog({imageId}) {
                                         <div className="flex items-center gap-4">
                                             <img src={collection.images[0].url} alt="" className="h-10 w-10 object-cover rounded-md"/>
                                             <div>
-                                                <p className="font-semibold line-clamp-2 text-ellipsis ">{collection.title}</p>
-                                                <p className="text-secondary">{collection.images.length} photos</p>
+                                                <p className="font-semibold line-clamp-2 text-ellipsis dark:group-hover:text-primary">{collection.title}</p>
+                                                <p className="text-secondary ">{collection.images.length} photos</p>
                                             </div>
                                         </div>
                                     </div>

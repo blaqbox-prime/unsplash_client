@@ -2,15 +2,14 @@ export const API_BASE_URL = 'http://localhost:8080/api/v1';
 
 // Images --------------------------------------
 export const searchImages = async (query) => {
-    const response = await fetch(`${API_BASE_URL}/images/${query && `search?query=${encodeURIComponent(query)}`}`);
-    let data = [], error = null;
+    const response = await fetch(`${API_BASE_URL}/images/${`search?query=${encodeURIComponent(query)}`}`);
+    let data = [];
 
     if(response.ok){
         data = await response.json();
-    } else {
-        error = await response.text();
     }
-    return {data, error};
+
+    return data;
 }
 
 // Collections -------------------------------
