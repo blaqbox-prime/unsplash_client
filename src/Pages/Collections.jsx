@@ -10,26 +10,27 @@ import AddCollection from '../Components/AddCollection'
 import { useQuery } from '@tanstack/react-query'
 import { getAllCollections } from '../Utils/api'
 import Loading from '../Components/Loading'
+import CollectionSkeleton from "../Components/CollectionSkeleton";
 
 function Collections() {
 
     const {data, error, isLoading} = useQuery({ queryKey: ['collections'], queryFn: getAllCollections })
 
     if(error){
-        return (<h1>This is an error page: {error.message}</h1>)
+        throw new Error(error.message)
     }
 
-    return isLoading ? <Loading /> : (
+    return  (
         <main className='w-full h-full'>
             <div className='text-center mt-16 max-w-sm mx-auto flex flex-col gap-4 '>
                 <Title title={"Collections"} className='' />
                 <p className="dark:text-light">Explore the world through collections of beautiful photos free to use under the <span className='underline font-bold'>Unsplash License.</span></p>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mx-auto mt-16 '>
-                {data.map( (collection) => (<CollectionCard collection={collection} key={collection._id}/>) )}
-                <AddCollection button={<AddCollectionCard />}/>
-            </div>
+            {isLoading ? <CollectionSkeleton /> : (<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mx-auto mt-16 '>
+                {data.map((collection) => (<CollectionCard collection={collection} key={collection._id}/>))}
+                <AddCollection button={<AddCollectionCard/>}/>
+            </div>)}
 
         </main>
     )

@@ -9,6 +9,9 @@ import Collection from './Pages/Collection';
 import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
 import Image from "./Pages/Image";
+import { ErrorBoundary } from "react-error-boundary";
+import NotFound from "./Pages/NotFound";
+
 
 const router = createBrowserRouter([
   {
@@ -20,6 +23,7 @@ const router = createBrowserRouter([
 
   {
     element: <AppRoot />,
+      errorElement: <NotFound />,
     children: [
       {path: '/search', element: <SearchResults />},
       {path: '/collections', element: <Collections />},
@@ -35,7 +39,9 @@ function App() {
 
 
   return ( 
-        <RouterProvider router={router} />
+       <ErrorBoundary fallback={<NotFound />}>
+           <RouterProvider router={router} />
+       </ErrorBoundary>
     );
 }
 
